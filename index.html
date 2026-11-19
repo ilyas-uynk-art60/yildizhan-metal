@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101010">
+  <meta name="description" content="Yıldızhan Metal; İstanbul İkitelli, Bayrampaşa ve çevresinde hurda metal alım taleplerinizi değerlendirir. Demir, bakır, alüminyum ve diğer hurda çeşitleri için iletişime geçin.">
+  <title>Yıldızhan Metal | İstanbul Hurda Alımı</title>
+
+  <style>
+    :root {
+      --orange: #f39b21;
+      --dark: #101010;
+      --panel: #1d1d1d;
+      --muted: #bdbdbd;
+      --green: #20bd5a;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+    body { font-family: Arial, sans-serif; background: var(--dark); color: #fff; line-height: 1.6; }
+    a { color: inherit; text-decoration: none; }
+    button, input, textarea, select { font: inherit; }
+    .container { width: min(90%, 1150px); margin: 0 auto; }
+
+    header { position: sticky; top: 0; z-index: 100; background: #111; border-bottom: 1px solid #333; }
+    .navbar { min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .logo { display: flex; align-items: center; min-width: 0; }
+    .logo img { display: block; width: 190px; max-height: 62px; object-fit: contain; }
+    .logo-fallback { color: var(--orange); font-size: 22px; font-weight: 900; }
+    nav { display: flex; align-items: center; gap: 20px; }
+    nav a { color: #ddd; font-size: 14px; }
+    nav a:hover { color: var(--orange); }
+    .menu-btn { display: none; color: #fff; background: none; border: 0; font-size: 28px; cursor: pointer; }
+
+    .hero {
+      min-height: 590px; display: flex; align-items: center;
+      background: linear-gradient(90deg, rgba(0,0,0,.94), rgba(0,0,0,.55)),
+      url("https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=1800&q=85") center/cover;
+    }
+    .hero-content { max-width: 760px; padding: 85px 0; }
+    .hero-tag { color: var(--orange); font-weight: 700; letter-spacing: 3px; margin-bottom: 18px; }
+    .hero h1 { font-size: clamp(42px, 7vw, 76px); line-height: 1.08; margin-bottom: 22px; }
+    .hero h1 span, .about-text h2 span { color: var(--orange); }
+    .hero p { color: #ddd; font-size: 18px; max-width: 650px; margin-bottom: 28px; }
+
+    .btn { display: inline-block; padding: 13px 23px; margin: 5px 8px 5px 0; border: 0; border-radius: 5px; background: var(--orange); color: #111; font-weight: 700; cursor: pointer; }
+    .btn:hover { background: #fff; }
+    .btn-outline { background: transparent; border: 1px solid #fff; color: #fff; }
+    section { padding: 78px 0; scroll-margin-top: 78px; }
+    .section-title { text-align: center; margin-bottom: 42px; }
+    .section-title small { color: var(--orange); font-weight: 700; letter-spacing: 3px; }
+    .section-title h2 { font-size: clamp(27px, 4vw, 36px); margin-top: 8px; }
+    .section-title p { color: #aaa; margin-top: 10px; }
+
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 42px; }
+    .about-image { min-height: 350px; border-radius: 10px; background: url("https://images.unsplash.com/photo-1567789884554-0b844b597180?auto=format&fit=crop&w=1000&q=85") center/cover; }
+    .about-text h2 { font-size: 32px; margin-bottom: 18px; }
+    .about-text p { color: var(--muted); margin-bottom: 14px; }
+
+    .scrap, .areas { background: #191919; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+    .card { background: #222; padding: 27px; border-radius: 9px; border-bottom: 3px solid var(--orange); transition: transform .2s, background .2s; }
+    .card:hover { transform: translateY(-5px); background: #292929; }
+    .symbol { font-size: 36px; margin-bottom: 12px; }
+    .card h3 { color: var(--orange); font-size: 20px; margin-bottom: 8px; }
+    .card p { color: #aaa; font-size: 14px; }
+
+    .area-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+    .area { padding: 30px; background: #262626; border-radius: 8px; border-left: 4px solid var(--orange); }
+    .area h3 { color: var(--orange); font-size: 24px; margin-bottom: 8px; }
+    .area p { color: #bbb; }
+
+    .contact { background: #111; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 35px; align-items: start; }
+    .contact-info h3 { font-size: 27px; margin-bottom: 15px; }
+    .contact-info p { color: #ccc; margin: 13px 0; }
+    form { background: #202020; padding: 27px; border-radius: 10px; }
+    input, textarea, select { display: block; width: 100%; padding: 13px; margin-bottom: 14px; background: #111; border: 1px solid #444; border-radius: 5px; color: #fff; }
+    input:focus, textarea:focus, select:focus { outline: 2px solid var(--orange); outline-offset: 1px; }
+    textarea { min-height: 115px; resize: vertical; }
+    form .btn { width: 100%; margin: 0; }
+    .form-note { color: #aaa; font-size: 12px; margin-top: 12px; }
+
+    footer { background: #080808; padding: 32px 0; text-align: center; color: #888; }
+    footer strong { color: var(--orange); }
+    .whatsapp { position: fixed; right: 18px; bottom: 18px; z-index: 200; background: var(--green); color: #fff; padding: 13px 18px; border-radius: 40px; font-weight: 700; box-shadow: 0 4px 18px #0008; }
+    .whatsapp:hover { background: #159447; }
+
+    @media (max-width: 850px) {
+      .menu-btn { display: block; }
+      nav { display: none; position: absolute; top: 78px; left: 0; width: 100%; padding: 20px 5%; background: #111; border-bottom: 1px solid #333; flex-direction: column; align-items: flex-start; }
+      nav.active { display: flex; }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; }
+      .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 560px) {
+      .logo img { width: 155px; }
+      .hero { min-height: 520px; }
+      .hero h1 { font-size: 44px; }
+      .cards, .area-grid { grid-template-columns: 1fr; }
+      section { padding: 60px 0; }
+      .whatsapp { right: 12px; bottom: 12px; padding: 11px 15px; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container navbar">
+      <a href="#home" class="logo" aria-label="Yıldızhan Metal ana sayfa">
+        <img src="logo.png" alt="Yıldızhan Metal logosu" onerror="this.style.display='none'; this.nextElementSibling.hidden=false;">
+        <span class="logo-fallback" hidden>YILDIZHAN METAL</span>
+      </a>
+
+      <button class="menu-btn" id="menuBtn" type="button" aria-label="Menüyü aç" aria-expanded="false">☰</button>
+
+      <nav id="nav" aria-label="Ana menü">
+        <a href="#home">Ana Sayfa</a>
+        <a href="#about">Hakkımızda</a>
+        <a href="#scrap">Hurda Çeşitleri</a>
+        <a href="#services">Hizmetlerimiz</a>
+        <a href="#areas">Bölgelerimiz</a>
+        <a href="#contact">İletişim</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-tag">İSTANBUL HURDA ALIM HİZMETİ</div>
+          <h1>YILDIZHAN<br><span>METAL</span></h1>
+          <p>Demir, bakır, alüminyum ve farklı hurda çeşitleri için bizimle iletişime geçin. İkitelli, Bayrampaşa ve İstanbul çevresindeki taleplerinizi değerlendirelim.</p>
+          <a href="#contact" class="btn">Teklif Al</a>
+          <a href="#scrap" class="btn btn-outline">Hurda Çeşitleri</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container about-grid">
+        <div class="about-image" role="img" aria-label="Metal geri dönüşüm tesisi görseli"></div>
+        <div class="about-text">
+          <h2>Hakkımızda <span>Yıldızhan Metal</span></h2>
+          <p>Yıldızhan Metal olarak hurda metal alım ve geri dönüşüm alanındaki taleplerinizi değerlendiriyoruz.</p>
+          <p>Demir, bakır, alüminyum, sarı ve diğer metal hurdaları hakkında bilgi almak için bize ulaşabilirsiniz.</p>
+          <p>Öncelikli hizmet bölgelerimiz İkitelli ve Bayrampaşa olmak üzere İstanbul çevresinden gelen talepleri değerlendiriyoruz.</p>
+          <a href="#contact" class="btn">İletişime Geç</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="scrap" id="scrap">
+      <div class="container">
+        <div class="section-title">
+          <small>HURDA ÇEŞİTLERİ</small>
+          <h2>Alımını Yaptığımız Hurdalar</h2>
+          <p>Hurda türünüz için bilgi ve teklif isteyin.</p>
+        </div>
+        <div class="cards">
+          <article class="card"><div class="symbol">⚙️</div><h3>Demir Hurda</h3><p>Demir ve çeşitli metal hurdaları.</p></article>
+          <article class="card"><div class="symbol">🔶</div><h3>Bakır Hurda</h3><p>Bakır ve bakır içerikli hurdalar.</p></article>
+          <article class="card"><div class="symbol">🔩</div><h3>Alüminyum</h3><p>Alüminyum profil ve diğer çeşitler.</p></article>
+          <article class="card"><div class="symbol">🧱</div><h3>Sarı Hurda</h3><p>Pirinç ve sarı metal hurdaları.</p></article>
+          <article class="card"><div class="symbol">🔌</div><h3>Kablo Hurda</h3><p>Değerlendirilebilir hurda kablolar.</p></article>
+          <article class="card"><div class="symbol">🏭</div><h3>Paslanmaz</h3><p>Paslanmaz çelik ve metal çeşitleri.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="section-title">
+          <small>HİZMETLERİMİZ</small>
+          <h2>Size Nasıl Yardımcı Oluyoruz?</h2>
+        </div>
+        <div class="cards">
+          <article class="card"><div class="symbol">♻️</div><h3>Hurda Alımı</h3><p>Çeşitli metal hurdalarınız için alım taleplerinizi değerlendiriyoruz.</p></article>
+          <article class="card"><div class="symbol">🚚</div><h3>Yerinden Alım</h3><p>Konum ve miktara göre yerinden alım imkânını telefonla sorabilirsiniz.</p></article>
+          <article class="card"><div class="symbol">📞</div><h3>Hızlı İletişim</h3><p>Hurdanız hakkında bilgi almak ve teklif istemek için bize ulaşabilirsiniz.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="areas" id="areas">
+      <div class="container">
+        <div class="section-title">
+          <small>HİZMET BÖLGELERİMİZ</small>
+          <h2>İstanbul Genelinde</h2>
+          <p>Öncelikli hizmet bölgelerimiz</p>
+        </div>
+        <div class="area-grid">
+          <article class="area"><h3>📍 İkitelli</h3><p>İkitelli ve çevresindeki hurda alım talepleriniz için bizimle iletişime geçebilirsiniz.</p></article>
+          <article class="area"><h3>📍 Bayrampaşa</h3><p>Bayrampaşa ve çevresindeki hurda alım talepleriniz için bize ulaşabilirsiniz.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="container">
+        <div class="section-title">
+          <small>İLETİŞİM</small>
+          <h2>Bizimle İletişime Geçin</h2>
+          <p>Hurdanız için bilgi ve teklif alın.</p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-info">
+            <h3>Yıldızhan Metal</h3>
+            <p>📍 Hizmet bölgeleri: İkitelli ve Bayrampaşa / İstanbul</p>
+            <p>📞 Telefon: 0539 825 36 42</p>
+            <p>💬 WhatsApp üzerinden bilgi ve teklif alabilirsiniz.</p>
+            <a href="tel:+905398253642" class="btn">Telefonla Ara</a>
+          </div>
+
+          <form id="offerForm">
+            <label for="name">Adınız Soyadınız</label>
+            <input type="text" id="name" name="name" autocomplete="name" placeholder="Adınız Soyadınız" required>
+
+            <label for="customerPhone">Telefon Numaranız</label>
+            <input type="tel" id="customerPhone" name="customerPhone" autocomplete="tel" placeholder="05XX XXX XX XX" required>
+
+            <label for="scrapType">Hurda Türü</label>
+            <select id="scrapType" name="scrapType" required>
+              <option value="">Hurda Türünü Seçin</option>
+              <option>Demir</option>
+              <option>Bakır</option>
+              <option>Alüminyum</option>
+              <option>Sarı</option>
+              <option>Kablo</option>
+              <option>Paslanmaz</option>
+              <option>Diğer</option>
+            </select>
+
+            <label for="location">Bulunduğunuz Bölge</label>
+            <input type="text" id="location" name="location" placeholder="Örn. İkitelli" required>
+
+            <label for="message">Hurda hakkında açıklama</label>
+            <textarea id="message" name="message" placeholder="Hurdanız ve yaklaşık miktarı hakkında bilgi yazın..."></textarea>
+
+            <button type="submit" class="btn">WhatsApp'tan Teklif Gönder</button>
+            <p class="form-note">Form gönderildiğinde WhatsApp sohbeti açılır. Mesajı göndermek için WhatsApp içinden Gönder'e basmanız gerekir.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <h3><strong>YILDIZHAN METAL</strong></h3>
+      <p>Metal geri dönüşüm ve hurda alım hizmetleri.</p>
+      <p>© <span id="year"></span> Yıldızhan Metal. Tüm hakları saklıdır.</p>
+    </div>
+  </footer>
+
+  <a class="whatsapp" id="whatsappBtn" href="https://wa.me/905398253642" target="_blank" rel="noopener noreferrer">WhatsApp'tan Yaz</a>
+
+  <script>
+    // Yıldızhan Metal WhatsApp numarası: ülke koduyla, + ve boşluk olmadan.
+    const WHATSAPP_NUMBER = "905398253642";
+
+    function openWhatsApp(message) {
+      const url = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(message);
+      // Aynı sekmede açmak, bazı tarayıcılardaki yeni pencere engelini önler.
+      window.location.href = url;
+    }
+
+    const menuBtn = document.getElementById("menuBtn");
+    const nav = document.getElementById("nav");
+
+    menuBtn.addEventListener("click", () => {
+      const isOpen = nav.classList.toggle("active");
+      menuBtn.setAttribute("aria-expanded", String(isOpen));
+      menuBtn.textContent = isOpen ? "×" : "☰";
+    });
+
+    nav.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        nav.classList.remove("active");
+        menuBtn.setAttribute("aria-expanded", "false");
+        menuBtn.textContent = "☰";
+      });
+    });
+
+    document.getElementById("whatsappBtn").addEventListener("click", event => {
+      event.preventDefault();
+      openWhatsApp("Merhaba Yıldızhan Metal, hurda alımı hakkında bilgi almak istiyorum.");
+    });
+
+    document.getElementById("offerForm").addEventListener("submit", event => {
+      event.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const customerPhone = document.getElementById("customerPhone").value.trim();
+      const type = document.getElementById("scrapType").value;
+      const location = document.getElementById("location").value.trim();
+      const message = document.getElementById("message").value.trim();
+
+      const whatsappMessage =
+        "Merhaba Yıldızhan Metal, hurda için teklif almak istiyorum.\n\n" +
+        "Ad Soyad: " + name + "\n" +
+        "Telefon: " + customerPhone + "\n" +
+        "Hurda Türü: " + type + "\n" +
+        "Bölge: " + location + "\n" +
+        "Açıklama: " + (message || "Belirtilmedi");
+
+      openWhatsApp(whatsappMessage);
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
